@@ -1,0 +1,69 @@
+﻿@model OnlineMedicineShopping.BusinessLayer.ViewModels.AppointmentViewModel
+@{
+    ViewData["Title"] = "Appointment";
+}
+
+<div class="card" style="width:100%; margin:10px;">
+    <div class="card-header bg-success text-white">
+        <h5>Book Appointment now</h5>
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.PatientName)
+                        @Html.TextBoxFor(m => m.PatientName, new { @class = "form-control" })
+                        <span asp-validation-for="PatientName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.DoctorName)
+                        @Html.DropDownListFor(m => m.DoctorName, new SelectList(Model.Doctors, "Name", "Name"), "Select Doctor", new { @class = "form-control" })
+                        <span asp-validation-for="DoctorName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Takendate)
+                        @Html.TextBoxFor(m => m.Takendate, "{0:d-M-yyyy}", new { type = "date", @class = "form-control" })
+                        <span asp-validation-for="Takendate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Symtoms)
+                        @Html.TextBoxFor(m => m.Symtoms, new { @class = "form-control" })
+                        <span asp-validation-for="Symtoms" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.PatientAge)
+                        @Html.TextBoxFor(m => m.PatientAge, new { @class = "form-control" })
+                        <span asp-validation-for="PatientAge" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Remark)
+                        @Html.TextBoxFor(m => m.Remark, new { @class = "form-control" })
+                        <span asp-validation-for="PatientAge" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary">Book Appointment</button>
+                <button class="btn btn-danger" onclick="location.href='@Url.Action("Index", "Medicine")';return false;">Back To Home</button>
+            </div>
+        }
+    </div>
+</div>

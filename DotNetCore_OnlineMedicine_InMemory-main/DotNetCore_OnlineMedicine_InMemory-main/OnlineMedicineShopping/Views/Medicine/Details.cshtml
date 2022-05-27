@@ -1,0 +1,57 @@
+﻿@model OnlineMedicineShopping.Entities.Medicine
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="card" style="width:100%; margin-top:10px;">
+    <div class="card-header bg-dark text-white">
+        <h5>Medicine Details</h5>
+    </div>
+    <div class="card-body">
+        <table class="table table-borderless">
+            <tr>
+                <td>
+                    <b>@Html.DisplayNameFor(m => m.Name)</b>
+                </td>
+                <td>@Html.DisplayFor(m => m.Name)</td>
+                <td>
+                    <b>@Html.DisplayNameFor(m => m.Brand)</b>
+                </td>
+                <td>@Html.DisplayFor(m => m.Brand)</td>
+            </tr>
+            <tr>
+                <td>
+                    <b>@Html.DisplayNameFor(m => m.Price)</b>
+                </td>
+                <td>@Html.DisplayFor(m => m.Price)</td>
+                <td>
+                    <b>@Html.DisplayNameFor(m => m.Stock)</b>
+                </td>
+                <td>@Html.DisplayFor(m => m.Stock)</td>
+            </tr>
+            <tr>
+                <td>
+                    <b>@Html.DisplayNameFor(m => m.Discount)</b>
+                </td>
+                <td>@Html.DisplayFor(m => m.Discount)</td>
+                <td>
+                    <b>@Html.DisplayNameFor(m => m.Details)</b>
+                </td>
+                <td>@Html.DisplayFor(m => m.Details)</td>
+            </tr>
+            <tr>
+                <td>
+                    <b>@Html.DisplayNameFor(m => m.Size)</b>
+                </td>
+                <td>@Html.DisplayFor(m => m.Size)</td>
+                <td>
+                    <b>@Html.DisplayNameFor(m => m.Features)</b>
+                </td>
+                <td>@Html.DisplayFor(m => m.Features)</td>
+            </tr>
+        </table>
+        <p>
+            @Html.ActionLink("Place Order Now", "Placeorder", "Medicine", new { MedicineId = Model.MedicineId }, new { @class = "btn btn-danger" })
+            @Html.ActionLink("Back to List", "Index", "Medicine", new { @class = "btn btn-primary" })
+        </p>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+﻿@model TouristGuide.BusinessLayer.ViewModels.PlaceViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+    <div class="col-md-6 px-0">
+        <h1 class="display-4 font-italic">Popular In India</h1>
+        <p class="lead my-3">India is a home to the finest architectural heritage, serene ghats, spectacular landscapes and largest tiger reserve.</p>
+        <p class="lead mb-0"><a href="@Url.Action("AboutIndia","Tourist", new { @class = "btn btn-primary" })" class="text-white font-weight-bold">Continue reading...</a></p>
+    </div>
+</div>
+<h1 class="text-center">All destination for a memorable trip</h1>
+@if (Model.PageCount() == 0)
+{
+    <tr>
+        <td style="color:red;" colspan="12">
+            Records not found |
+            @Html.ActionLink("Go To Home", "Index", "Tourist", new { @class = "btn btn-primary" })
+        </td>
+    </tr>
+}
+else
+{
+<div class="row mb-2">
+    @foreach (var place in Model.PaginatedPlace())
+    {
+        <div class="col-md-6">
+            <div class="card flex-md-row mb-4 box-shadow h-auto">
+                <div class="card-body d-flex flex-column align-items-start">
+                    <strong class="d-inline-block mb-2 text-primary">Place By Experiences :- @place.Experiences</strong>
+                    <h3 class="mb-0">
+                        <a class="text-dark" href="#">@place.Name</a>
+                    </h3>
+                    <div class="mb-1 text-muted">Attraction : @place.Attraction</div>
+                    <p class="card-text mb-auto">@place.Description</p>
+                    <a href="@Url.Action("Details","Tourist", new { PlaceId = place.PlaceId, @class = "btn btn-primary" })">Continue reading</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+}
+<ul class="pagination">
+    @for (int i = 1; i <= Model.PageCount(); i++)
+    {
+        <li class="@(i == Model.CurrentPage ? "page-item active" : "page-item")">
+            <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+        </li>
+
+    }
+</ul>
+

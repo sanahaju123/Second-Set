@@ -1,0 +1,56 @@
+﻿@model OnlineMedicineShopping.Entities.Appointment
+@{
+    ViewData["Title"] = "Details";
+}
+    <div class="card" style="width:100%; margin-top:10px;">
+        <div class="card-header bg-dark text-white">
+            <h5>Appintment Details</h5>
+            <h6>Keep your details while meeting with doctor</h6>
+        </div>
+        <div class="card-body">
+            <table class="table table-borderless">
+                <tr>
+                    <td>
+                        <b>@Html.DisplayNameFor(m => m.PatientName)</b>
+                    </td>
+                    <td>@Html.DisplayFor(m => m.PatientName)</td>
+                    <td>
+                        <b>@Html.DisplayNameFor(m => m.DoctorName)</b>
+                    </td>
+                    <td>@Html.DisplayFor(m => m.DoctorName)</td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>@Html.DisplayNameFor(m => m.Takendate)</b>
+                    </td>
+                    <td>@Html.DisplayFor(m => m.Takendate)</td>
+                    <td>
+                        <b>@Html.DisplayNameFor(m => m.PatientAge)</b>
+                    </td>
+                    <td>@Html.DisplayFor(m => m.PatientAge)</td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>@Html.DisplayNameFor(m => m.Symtoms)</b>
+                    </td>
+                    <td>@Html.DisplayFor(m => m.Symtoms)</td>
+                    <td>
+                        <b>@Html.DisplayNameFor(m => m.Remark)</b>
+                    </td>
+                    <td>@Html.DisplayFor(m => m.Remark)</td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>@Html.DisplayNameFor(m => m.AppointmentId)</b>
+                    </td>
+                    <td>@Html.DisplayFor(m => m.AppointmentId)</td>
+                </tr>
+            </table>
+            <p>
+                @Html.ActionLink("Back to Home", "Index", "Medicine", new { @class = "btn btn-primary" })
+            </p>
+        </div>
+        <div class="card-footer bg-dark text-white">
+            <h6>Thanks for using Online Medical Shopping Appointment</h6>
+        </div>
+    </div>

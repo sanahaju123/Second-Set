@@ -1,0 +1,33 @@
+﻿@model IEnumerable<TouristGuide.Entities.TourGuide>
+@{
+    ViewData["Title"] = "OrderInfo";
+}
+
+<div class="container text-center" style="margin-top:10px">
+    <div class="jumbotron mt-3">
+        <h1>Tour Info</h1>
+        <p class="lead">Thanku for Booking with us your Operator will be contacted soon....</p>
+        @Html.ActionLink("Home", "Index", "Tourist", new { @class = "btn btn-primary" })
+    </div>
+</div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.TourId)</th>
+            <th>@Html.DisplayNameFor(m => m.Name)</th>
+            <th>@Html.DisplayNameFor(m => m.Phone)</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.TourId</td>
+                <td>@order.Name</td>
+                <td>@order.Phone</td>
+                <td>Soon we Contact</td>
+            </tr>
+        }
+    </tbody>
+</table>

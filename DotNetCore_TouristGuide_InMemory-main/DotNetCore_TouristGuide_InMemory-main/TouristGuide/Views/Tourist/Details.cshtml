@@ -1,0 +1,28 @@
+﻿@model TouristGuide.Entities.Place
+@{
+    ViewData["Title"] = "Place Details";
+}
+<div class="card" style="width:100%; margin-top:10px;">
+    <div class="card-header bg-dark text-white">
+        <h5>Place Details</h5>
+    </div>
+    <div class="card-body">
+        <div class="row mb-2">
+            <div class="col-md-12">
+                <div class="card flex-md-row mb-4 box-shadow h-auto">
+                    <div class="card-body d-flex flex-column align-items-start">
+                        <strong class="d-inline-block mb-2 text-primary">Place By Experiences : @Html.DisplayFor(m => m.Experiences)</strong>
+                        <h3 class="mb-0">
+                            <a class="text-dark" href="#">@Html.DisplayFor(m => m.Name)</a>
+                        </h3>
+                        <div class="mb-1 text-muted"><strong>Place By Attraction : </strong>@Html.DisplayFor(m => m.Attraction)</div>
+                        <p class="card-text mb-auto">@Html.DisplayFor(m => m.Description)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p>
+            @Html.ActionLink("Back to Home", "Index", "Tourist", new { @class = "btn btn-primary" })
+        </p>
+    </div>
+</div>

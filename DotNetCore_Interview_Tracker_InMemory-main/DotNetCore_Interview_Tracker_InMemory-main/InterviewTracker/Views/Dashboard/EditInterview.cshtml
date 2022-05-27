@@ -1,0 +1,114 @@
+﻿@model InterviewTracker.BusinessLayer.ViewModels.EditInterviewViewModel
+
+@{
+    ViewData["Title"] = "Edit Interview";
+}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $(".datepicker").datepicker();
+    });
+</script>
+
+<div class="card" style="width:60%; margin:auto;">
+    <div class="card-header bg-success text-white">
+        <h5>Update Interview</h5>
+    </div>
+    <div class="card-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Interviewer)
+                        @Html.DropDownListFor(m => m.Interviewer, new SelectList(Model.ApplicationUsers, "FirstName", "FirstName", Model.UserId), new { @class = "form-control", autofocus = "" })
+
+                        @*@Html.TextBoxFor(m => m.Interviewer, new { autofocus = "", @class = "form-control" })*@
+                        <span asp-validation-for="Interviewer" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.InterviewName)
+                        @Html.TextBoxFor(m => m.InterviewName, new { @class = "form-control" })
+                        <span asp-validation-for="InterviewName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.InterviewUser)
+                        @Html.DropDownListFor(m => m.InterviewUser, new SelectList(Model.ApplicationUsers, "FirstName", "FirstName", Model.UserId), new { @class = "form-control" })
+
+                        @*@Html.TextBoxFor(m => m.InterviewUser, new { autofocus = "", @class = "form-control" })*@
+                        <span asp-validation-for="InterviewUser" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.UserSkills)
+                        @Html.TextBoxFor(m => m.UserSkills, new { @class = "form-control" })
+                        <span asp-validation-for="UserSkills" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.InterviewDate)
+                        @Html.TextBoxFor(m => m.InterviewDate, "{0:yyy-MM-dd}", new { type = "date", @class = "form-control" })
+                        <span asp-validation-for="InterviewDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.InterviewTime)
+                        @Html.TextBoxFor(m => m.InterviewTime, "{0:t}", new { type = "time", @class = "form-control" })
+                        <span asp-validation-for="InterviewTime" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.InterViewsStatus)
+                        <select asp-for="InterViewsStatus" asp-items="Html.GetEnumSelectList<InterviewTracker.Entities.InterviewStatus>()"
+                                class="custom-select mr-sm-2 form-control">
+                            <option value="">Please Select</option>
+                        </select>
+                        <span asp-validation-for="InterViewsStatus" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.TInterViews)
+                        <select asp-for="TInterViews" asp-items="Html.GetEnumSelectList<InterviewTracker.Entities.TechnicalInterviewStatus>()"
+                                class="custom-select mr-sm-2 form-control">
+                            <option value="">Please Select</option>
+                        </select>
+                        <span asp-validation-for="TInterViews" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Remark)
+                        @Html.TextAreaFor(m => m.Remark, new { autofocus = "", @class = "form-control" })
+                        <span asp-validation-for="Remark" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button class="btn btn-danger" onclick="location.href='@Url.Action("AllInterviewAsync", "Dashboard")';return false;">Back To Dashboard</button>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<InterviewTracker.Entities.ApplicationUser>
+@{
+    ViewData["Title"] = "AllUser";
+}
+<h3 class="text-center text-uppercase">Manage User</h3>
+<p>
+    <button class="btn btn-primary" onclick="location.href='@Url.Action("RegisterUser", "User")';return false;">Register New User</button>
+</p>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.FirstName)</th>
+            <th>@Html.DisplayNameFor(m => m.LastName)</th>
+            <th>@Html.DisplayNameFor(m => m.Email)</th>
+            <th>@Html.DisplayNameFor(m => m.UserTypes)</th>
+            <th>@Html.DisplayNameFor(m => m.Stat)</th>
+            <th>@Html.DisplayNameFor(m => m.ReportingTo)</th>
+            <th>@Html.DisplayNameFor(m => m.MobileNumber)</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+        <tr>
+            <td>@user.FirstName</td>
+            <td>@user.LastName</td>
+            <td>@user.Email</td>
+            <td>@user.UserTypes</td>
+            <td>@user.Stat</td>
+            <td>@user.ReportingTo</td>
+            <td>@user.MobileNumber</td>
+            <td>@Html.ActionLink("Edit", "EditUser", "User", new { UserId = user.UserId, @class = "btn btn-primary" }) |
+            @Html.ActionLink("Delete", "DeleteUser", "User", new { UserId = user.UserId, @class = "btn btn-primary" })</td>
+        </tr>
+        }
+    </tbody>
+</table>
+

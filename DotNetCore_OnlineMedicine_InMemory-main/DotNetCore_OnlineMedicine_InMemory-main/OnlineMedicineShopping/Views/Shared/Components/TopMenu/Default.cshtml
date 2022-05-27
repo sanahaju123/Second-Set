@@ -1,0 +1,25 @@
+﻿@model IList<OnlineMedicineShopping.Entities.Category>
+<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Shop</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+                @foreach (var item in Model)
+                {
+                    var url = item.Url;
+                    var target = "_self";
+
+                    if (url.StartsWith("~"))
+                    {
+                        url = Url.Content(url);
+                    }
+                    if (item.OpenInNewWindow)
+                    {
+                        target = "_blank";
+                    }
+                    <a class="nav-link text-dark" href="@url" target="@target">@item.Title</a>
+                }
+            </div>
+        </li>
+    </ul>
+</div>

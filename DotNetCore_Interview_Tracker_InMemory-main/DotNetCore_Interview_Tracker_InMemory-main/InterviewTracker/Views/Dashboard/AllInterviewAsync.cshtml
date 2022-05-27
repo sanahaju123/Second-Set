@@ -1,0 +1,90 @@
+﻿@model InterviewTracker.BusinessLayer.ViewModels.InterviewViewModel
+@{
+    ViewData["Title"] = "AllInterview";
+}
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+<div class="card" style="width:100%; margin-top:0px;">
+    <div class="card-header bg-success text-white">
+        <h3 class="text-center text-uppercase">Admin Dashboard</h3>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <button class="btn btn-primary" onclick="location.href='@Url.Action("AddNewInterview", "Interview")';return false;">Add New Interview</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group float-right">
+                    Total Interview : @ViewBag.Counts
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<p>
+    @using (Html.BeginForm("Dashboard", "AllInterviewAsync", FormMethod.Get))
+    {
+        <b>Search By:</b>
+        <text>Interview And Interviewer  Name  : </text> @Html.TextBox("search") <input type="submit" name="submit" value="Search" />
+        @Html.ActionLink(" | Back to full List", "AllInterviewAsync", new { @class = "btn btn-primary" })
+    }
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.InterviewName)</th>
+            <th>@Html.DisplayNameFor(m => m.Interviewer)</th>
+            <th>@Html.DisplayNameFor(m => m.InterviewUser)</th>
+            <th>@Html.DisplayNameFor(m => m.InterviewDate)</th>
+            <th>@Html.DisplayNameFor(m => m.InterviewTime)</th>
+            <th>@Html.DisplayNameFor(m => m.InterViewsStatus)</th>
+            <th>@Html.DisplayNameFor(m => m.TInterViews)</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.PageCount() == 0)
+        {
+            <tr>
+                <td style="color:red;" colspan="12">
+                    Records not found |
+                    @Html.ActionLink("Go to all interview", "AllInterviewAsync", new { @class = "btn btn-primary" })
+                </td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var interview in Model.PaginatedInterview())
+            {
+                <tr>
+                    <td>@interview.InterviewName</td>
+                    <td>@interview.Interviewer</td>
+                    <td>@interview.InterviewUser</td>
+                    <td>@interview.InterviewDate.ToShortDateString()</td>
+                    <td>@interview.InterviewTime.ToLongTimeString()</td>
+                    <td>@interview.InterViewsStatus</td>
+                    <td>@interview.TInterViews</td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditInterview", "Dashboard", new { InterviewId = interview.InterviewId, @class = "btn btn-primary" }) |
+                        @Html.ActionLink("Delete", "DeleteInterview", "Dashboard", new { InterviewId = interview.InterviewId, @class = "btn btn-primary" })
+                    </td>
+                </tr>
+            }
+
+        }
+    </tbody>
+</table>
+<ul class="pagination">
+    @for (int i = 1; i <= Model.PageCount(); i++)
+    {
+        <li class="@(i == Model.CurrentPage ? "page-item active" : "page-item")">
+            <a class="page-link" href="@Url.Action("AllInterviewAsync", new { page = i })">@i</a>
+        </li>
+    }
+</ul>

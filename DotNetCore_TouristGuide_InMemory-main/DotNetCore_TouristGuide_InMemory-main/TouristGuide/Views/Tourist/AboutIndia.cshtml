@@ -1,0 +1,54 @@
+﻿@model IEnumerable<TouristGuide.Entities.AboutIndia>
+@{
+    ViewData["Title"] = "About India";
+}
+    <div class="card" style="width:100%; margin-top:10px;">
+        <div class="card-header bg-dark text-white">
+            <h5>About India, How to Visit</h5>
+        </div>
+        <div class="card-body">
+            @foreach (var about in Model)
+            {
+                <div class="col-md-12">
+                    <div class="card-body d-flex flex-column align-items-start">
+                        <h3 class="mb-0">
+                            <a class="text-dark" href="#">About India</a>
+                        </h3>
+                        <p class="card-text mb-auto">@about.About</p>
+                        <h3 class="mb-0">
+                            <a class="text-dark" href="#">Visa</a>
+                        </h3>
+                        <p class="card-text mb-auto">@about.Visa</p>
+                        <h3 class="mb-0">
+                            <a class="text-dark" href="#">Currency</a>
+                        </h3>
+                        <p class="card-text mb-auto">@about.Currency</p>
+                        <h3 class="mb-0">
+                            <a class="text-dark" href="#">Language</a>
+                        </h3>
+                        <p class="card-text mb-auto">@about.Language</p>
+                        <h3 class="mb-0">
+                            <a class="text-dark" href="#">State</a>
+                        </h3>
+                        <p class="card-text mb-auto">@about.State</p>
+                        <h3 class="mb-0">
+                            <a class="text-dark" href="#">UNION TERRITORIES</a>
+                        </h3>
+                        <p class="card-text mb-auto">@about.UNION_TERRITORIES</p>
+                        <h3 class="mb-0">
+                            <a class="text-dark" href="#">Climate</a>
+                        </h3>
+                        <p class="card-text mb-auto">@about.Climate</p>
+                        <h3 class="mb-0">
+                            <a class="text-dark" href="#">How To Visit</a>
+                        </h3>
+                        <p class="card-text mb-auto">@about.How_Visit</p>
+                    </div>
+                </div>
+            }
+        </div>
+        <p>
+            @Html.ActionLink("Back to Home", "Index", "Tourist", new { @class = "btn btn-primary" })
+        </p>
+    </div>
+

@@ -24,7 +24,7 @@ namespace TouristGuide.Test.TestCases
         private readonly Destination _destination;
         private readonly TourGuide _tourGuide;
         private readonly AboutIndia _aboutIndia;
-        private static string type = "Exceptional";
+        private static string type = "Exception";
         public ExceptionalTest(ITestOutputHelper output)
         {
             //Creating New mock Object with value.

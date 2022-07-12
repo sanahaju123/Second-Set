@@ -25,7 +25,7 @@ namespace Schoolmanagement.Test.TestCases
         private readonly Library _library;
         private readonly Teacher _teacher;
         private readonly BookBorrow _bookBorrow;
-        private static string type = "Exceptional";
+        private static string type = "Exception";
         public ExceptionalTest(ITestOutputHelper output)
         {
             _output = output;

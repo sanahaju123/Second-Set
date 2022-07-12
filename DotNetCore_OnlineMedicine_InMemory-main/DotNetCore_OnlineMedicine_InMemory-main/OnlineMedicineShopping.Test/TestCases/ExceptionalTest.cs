@@ -26,7 +26,7 @@ namespace OnlineMedicineShopping.Test.TestCases
         private readonly MedicineOrder _order;
         private readonly Appointment _appointment;
         private readonly Doctor _doctor;
-        private static string type = "Exceptional";
+        private static string type = "Exception";
         public ExceptionalTest(ITestOutputHelper output)
         {
             //Creating New mock Object with value.

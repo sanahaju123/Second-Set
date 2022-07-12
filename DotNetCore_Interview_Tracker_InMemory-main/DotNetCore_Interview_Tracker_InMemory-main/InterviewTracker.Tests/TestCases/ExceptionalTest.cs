@@ -23,7 +23,7 @@ namespace InterviewTracker.Tests.TestCases
         public readonly Mock<IUserInterviewTrackerRepository> serviceUser = new Mock<IUserInterviewTrackerRepository>();
         private readonly ApplicationUser _user;
         private readonly Interview _interview;
-        private static string type = "Exceptional";
+        private static string type = "Exception";
         /// <summary>
         /// Injecting service object into Test class constructor
         /// </summary>
